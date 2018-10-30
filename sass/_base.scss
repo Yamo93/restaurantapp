@@ -1,0 +1,16 @@
+$primary-color: #3b9a9c;
+$red: #D25565;
+$green: #6abe83;
+$orange: #FF9933;
+
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Cabin', sans-serif;
+}

@@ -1,0 +1,43 @@
+.nav {
+    width: 100%;
+    height: 90px;
+    padding: 0px 85px;
+    background-color: #EFEFEF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__logo {
+        width: 10%;
+
+        &-title {
+            color: $green;
+        }
+    }
+
+    &__menu {
+        width: 40%;
+
+        &-list {
+            display: flex;
+            justify-content: space-between;
+            list-style: none;
+            width: 100%;
+        }
+    }
+
+    &__search {
+        width: 140px;
+        border: none;
+        background-color: inherit;
+        padding: 5px;
+        font: inherit;
+        border-bottom: 2px solid rgba(0, 0, 0, .4);
+        transition: all .3s;
+
+        &:focus {
+            border-bottom: 2px solid $orange;
+            outline: none;
+        }
+    }
+}
