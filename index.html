@@ -11,10 +11,21 @@
 </head>
 <body>
     <nav class="nav">
+        <div onclick="closeMenu()" class="backdrop"></div>
+        <div class="dropdown">
+            <p onclick="closeMenu()" class="close">&times;</p>
+            <h1>Tasty</h1>
+            <ul>
+                <li>Home</li>
+                <li>Offers</li>
+                <li>About</li>
+                <li>Contact</li>
+            </ul>
+        </div>
         <div class="nav__logo">
             <h1 class="nav__logo-title">Tasty</h1>
         </div>
-        <i class="fas fa-bars hamburger"></i>
+        <i onclick="showMenu()" class="fas fa-bars hamburger"></i>
         <div class="nav__menu">
             <ul class="nav__menu-list">
                 <li class="nav__menu-list--item">Home</li>
@@ -156,5 +167,23 @@
             <a href="#" class="tables__book">Book a table</a>
         </div>
     </footer>
+
+    <script>
+        window.addEventListener('keyup', function(e) {
+            if (e.keyCode === 27) {
+            document.querySelector('.dropdown').style.transform = 'translateY(-105%)';
+            document.querySelector('.backdrop').style.transform = 'translateY(-100%)';
+            }
+        })
+        function showMenu() {
+            document.querySelector('.dropdown').style.transform = 'translateY(0)';
+            document.querySelector('.backdrop').style.transform = 'translateY(0)';
+        }
+
+        function closeMenu() {
+            document.querySelector('.dropdown').style.transform = 'translateY(-105%)';
+            document.querySelector('.backdrop').style.transform = 'translateY(-100%)';
+        }
+    </script>
 </body>
 </html>
