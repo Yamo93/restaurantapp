@@ -7,16 +7,37 @@
     justify-content: space-between;
     align-items: center;
 
+    @media screen and (max-width: 600px) {
+        padding: 0 35px;
+    }
+
     &__logo {
         width: 10%;
+        min-width: 75px;
 
         &-title {
             color: $green;
         }
     }
 
+    .hamburger {
+        font-size: 35px;
+        display: none;
+        cursor: pointer;
+        width: 30%;
+        text-align: center;
+        
+        @media screen and (max-width: 800px) {
+            display: block;
+        }
+    }
+
     &__menu {
         width: 40%;
+
+        @media screen and (max-width: 800px) {
+            display: none;
+        }
 
         &-list {
             display: flex;
@@ -34,6 +55,10 @@
         font: inherit;
         border-bottom: 2px solid rgba(0, 0, 0, .4);
         transition: all .3s;
+
+        @media screen and (max-width: 800px) {
+            width: 110px;
+        }
 
         &:focus {
             border-bottom: 2px solid $orange;

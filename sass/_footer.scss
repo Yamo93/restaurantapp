@@ -1,0 +1,139 @@
+.footer {
+    width: 100%;
+    height: 100%;
+
+    .wrapper {
+        display: flex;
+    }
+
+    &__join, &__story {
+        width: 50%;
+        padding: 30px 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        &-title {
+            font-size: 26px;
+        }
+
+        &-link {
+            font-size: 14px;
+            cursor: pointer;
+        }
+    }
+
+    &__join {
+        background-color: $primary-color;
+
+        &-title, &-link {
+            color: #FEFEFE;
+        }
+    }
+
+    &__story {
+        width: 50%;
+        background-color: #FEFEFE;
+
+        &-title {
+            color: rgba(0, 0, 0, .6);
+        }
+
+        &-link {
+            color: $primary-color;
+            font-weight: 600;
+        }
+    }
+
+    &__bottom {
+        width: 100%;
+        height: 100%;
+        padding: 110px;
+
+        .wrapper {
+            display: flex;
+            width: 100%;
+            justify-content: space-around;
+        }
+
+        &-title {
+            color: $green;
+            text-align: center;
+        }
+
+        &-lists {
+            display: flex;
+            width: 35%;
+            justify-content: space-between;
+
+            &-1, &-2, &-3 {
+                list-style: none;
+
+                .list-desc {
+                    color: $primary-color;
+                    font-weight: 600;
+                    font-size: 18px;
+                    margin-bottom: 20px;
+
+                }
+
+                &--item:not(:last-child) {
+                    margin-bottom: 15px;
+                }
+            }
+        }
+
+        .toplink {
+            color: rgba(0, 0, 0, .6);
+        }
+        
+        .toplink * {
+            cursor: pointer;
+        }
+
+        .toplink a {
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: inherit;
+            font-size: 14px;
+            font-weight: 600;
+            margin-right: 15px;
+
+        }
+    }
+
+    .tables {
+        width: 80%;
+        margin: 0 auto;
+        height: 100%;
+        padding: 50px 0;
+        border-top: .4px solid rgba(0, 0, 0, .3);
+        display: flex;
+        justify-content: space-between;
+
+        &__kitchens {
+            list-style: none;
+            display: flex;
+            width: 55%;
+            justify-content: space-between;
+
+            &-option {
+                text-transform: uppercase;
+                font-size: 14px;
+                letter-spacing: 1.8px;
+                color: rgba(0, 0, 0, .6);
+                font-weight: 600;
+            }
+        }
+
+        &__book {
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1.8px;
+            color: $primary-color;
+            text-decoration: none;
+            font-weight: 600;
+        }
+    }
+}
