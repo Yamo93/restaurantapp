@@ -4,6 +4,10 @@
 
     .wrapper {
         display: flex;
+
+        @media screen and (max-width: 720px) {
+            flex-direction: column;
+        }
     }
 
     &__join, &__story {
@@ -12,6 +16,14 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+
+        @media screen and (max-width: 720px) {
+            width: 100%;
+        }
+
+        @media screen and (max-width: 450px) {
+            padding: 30px 40px;
+        }
 
         &-title {
             font-size: 26px;
@@ -35,6 +47,10 @@
         width: 50%;
         background-color: #FEFEFE;
 
+        @media screen and (max-width: 720px) {
+            width: 100%;
+        }
+
         &-title {
             color: rgba(0, 0, 0, .6);
         }
@@ -54,11 +70,20 @@
             display: flex;
             width: 100%;
             justify-content: space-around;
+
+            @media screen and (max-width: 920px) {
+                flex-direction: column;
+            }
         }
 
         &-title {
+            width: 20%;
             color: $green;
             text-align: center;
+            @media screen and (max-width: 920px) {
+                margin-bottom: 55px;
+                font-size: 34px;
+            }
         }
 
         &-lists {
@@ -66,8 +91,33 @@
             width: 35%;
             justify-content: space-between;
 
+            @media screen and (max-width: 920px) {
+                width: 100%;
+                margin-bottom: 60px;
+            }
+
+            @media screen and (max-width: 550px) {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            &-1, &-2 {
+
+                @media screen and (max-width: 550px) {
+                    border-bottom: .6px solid rgba(0, 0, 0, .3);
+                    padding-bottom: 25px;
+                }
+
+            }
+
             &-1, &-2, &-3 {
                 list-style: none;
+
+                @media screen and (max-width: 550px) {
+                    margin-bottom: 25px;
+                    width: 100%;
+                    text-align: center;
+                }
 
                 .list-desc {
                     color: $primary-color;
@@ -75,16 +125,27 @@
                     font-size: 18px;
                     margin-bottom: 20px;
 
+                    @media screen and (max-width: 550px) {
+                        font-size: 26px;
+                    }
                 }
 
                 &--item:not(:last-child) {
                     margin-bottom: 15px;
+                }
+
+                &--item {
+                    @media screen and (max-width: 550px) {
+                        font-size: 18px;
+                    }
                 }
             }
         }
 
         .toplink {
             color: rgba(0, 0, 0, .6);
+            width: 150px;
+            margin: 0 auto;
         }
         
         .toplink * {
@@ -99,7 +160,6 @@
             font-size: 14px;
             font-weight: 600;
             margin-right: 15px;
-
         }
     }
 
@@ -112,11 +172,27 @@
         display: flex;
         justify-content: space-between;
 
+        @media screen and (max-width: 900px) {
+            flex-direction: column-reverse;
+        }
+
+        @media screen and (max-width: 450px) {
+            width: 90%;
+        }
+
         &__kitchens {
             list-style: none;
             display: flex;
-            width: 55%;
+            width: 70%;
             justify-content: space-between;
+            @media screen and (max-width: 900px) {
+                width: 100%;
+            }
+
+            @media screen and (max-width: 550px) {
+                flex-direction: column;
+                text-align: center;
+            }
 
             &-option {
                 text-transform: uppercase;
@@ -124,6 +200,10 @@
                 letter-spacing: 1.8px;
                 color: rgba(0, 0, 0, .6);
                 font-weight: 600;
+
+                @media screen and (max-width: 550px) {
+                    margin-bottom: 10px;
+                }
             }
         }
 
@@ -134,6 +214,11 @@
             color: $primary-color;
             text-decoration: none;
             font-weight: 600;
+
+            @media screen and (max-width: 900px) {
+                margin-bottom: 50px;
+                text-align: center;
+            }
         }
     }
 }

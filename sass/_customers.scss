@@ -6,8 +6,34 @@
     display: flex;
     justify-content: space-between;
 
+    @media screen and (max-width: 1000px) {
+        padding: 120px 70px;
+    }
+
+    @media screen and (max-width: 850px) {
+        padding: 120px 40px;
+    }
+
+    @media screen and (max-width: 750px) {
+        flex-direction: column-reverse;
+    }
+
+    @media screen and (max-width: 430px) {
+        padding: 100px 25px;
+    }
+
     &__left {
         width: 40%;
+        min-width: 310px;
+
+        @media screen and (max-width: 850px) {
+            width: 45%;
+        }
+
+        @media screen and (max-width: 750px) {
+            width: 100%;
+            margin-top: 80px;
+        }
 
         &-title {
             font-size: 32px;
@@ -34,11 +60,25 @@
     &__right {
         width: 40%;
 
+        @media screen and (max-width: 850px) {
+            width: 45%;
+        }
+
+        @media screen and (max-width: 750px) {
+            width: 100%;
+        }
+
         &-box {
             margin-top: 50px;
             position: relative;
             padding: 35px;
             background-color: #FEFEFE;
+            min-width: 330px;
+
+            @media screen and (max-width: 430px) {
+                min-width: 270px;
+                padding: 25px;
+            }
 
             
             &:before {
@@ -91,6 +131,10 @@
 
                 .star {
                     color: $primary-color;
+
+                    @media screen and (max-width: 430px) {
+                        font-size: 14px;
+                    }
                 }
 
                 .star:not(:last-child) {
@@ -106,6 +150,10 @@
             blockquote {
                 font-size: 22px;
                 margin-bottom: 40px;
+
+                @media screen and (max-width: 430px) {
+                    font-size: 18px;
+                }
             }
 
             cite {

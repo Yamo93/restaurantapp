@@ -24,6 +24,10 @@
             width: 100%;
         }
 
+        @media screen and (max-width: 500px) {
+            min-width: 300px;
+        }
+
 
         &-intro {
             margin-top: 130px;
@@ -55,7 +59,15 @@
             font-size: 13px;
             text-transform: uppercase;
             color: #FEFEFE;
+
+            @media screen and (max-width: 430px) {
+                display: block;
+                margin-bottom: 25px;
+                text-align: center;
+                width: 100%;
+            }
         }
+
 
         &-btn2 {
             margin-right: 0;
@@ -82,13 +94,22 @@
 
         @media screen and (max-width: 1000px) {
             width: 400px;
-            height: 400px;
+            height: 300px;
             transform: translateY(120px);
         }
         
-        @media screen and (max-width: 800px) {
-            width: 80%;
-            transform: translateY(60px);
+        @media screen and (max-width: 800px) and (min-height: 1000px) {
+            width: 90%;
+            transform: translate(0px, 65px);
+            height: 450px;
+        }
+
+        @media screen and (max-width: 700px) {
+            width: 300px;
+        }
+
+        @media screen and (max-width: 450px) {
+            transform: translate(15px, 65px);
         }
 
         &-larr, &-rarr {

@@ -18,11 +18,15 @@
         justify-content: center;
     }
 
+    @media screen and (max-width: 430px) {
+        padding: 100px 25px;
+    }
+
     &__left {
         width: 35%;
 
         @media screen and (max-width: 550px) {
-            width: 90%;
+            width: 100%;
             margin-bottom: 90px;
         }
 
@@ -42,7 +46,7 @@
         width: 45%;
 
         @media screen and (max-width: 550px) {
-            width: 90%;
+            width: 100%;
         }
 
         &-title {
