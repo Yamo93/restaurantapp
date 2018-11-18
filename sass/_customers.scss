@@ -12,6 +12,7 @@
 
     @media screen and (max-width: 850px) {
         padding: 120px 40px;
+        transform: translateY(120px);
     }
 
     @media screen and (max-width: 750px) {
@@ -82,7 +83,7 @@
 
             
             &:before {
-                content: '01 / 03';
+                content: attr(data-current);
                 color: rgba(0, 0, 0, .7);
                 position: absolute;
                 top: -40px;

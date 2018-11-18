@@ -10,16 +10,27 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
+    <!-- 
+        Todos:
+        * add animations
+        * make links work
+        * make slideshows work (for the pictures AND the quotes)
+        * make scrolling smooth
+        * maybe try make imgs reposnive
+        * deployment (github pages?)
+    
+    -->
     <nav class="nav">
         <div onclick="closeMenu()" class="backdrop"></div>
         <div class="dropdown">
             <p onclick="closeMenu()" class="close">&times;</p>
             <h1>Tasty</h1>
             <ul>
-                <li>Home</li>
-                <li>Offers</li>
-                <li>About</li>
-                <li>Contact</li>
+                <li onclick="closeMenu()"><a href="#">Home</a></li>
+                <li onclick="closeMenu()"><a href="#about">About</a></li>
+                <li onclick="closeMenu()"><a href="#offers">Offers</a></li>
+                <li onclick="closeMenu()"><a href="#contact">Contact</a></li>
             </ul>
         </div>
         <div class="nav__logo">
@@ -28,10 +39,10 @@
         <i onclick="showMenu()" class="fas fa-bars hamburger"></i>
         <div class="nav__menu">
             <ul class="nav__menu-list">
-                <li class="nav__menu-list--item">Home</li>
-                <li class="nav__menu-list--item">Offers</li>
-                <li class="nav__menu-list--item">About Us</li>
-                <li class="nav__menu-list--item">Contact</li>
+                <li class="nav__menu-list--item homebtn">Home</li>
+                <li class="nav__menu-list--item aboutbtn">About Us</li>
+                <li class="nav__menu-list--item offersbtn">Offers</li>
+                <li class="nav__menu-list--item contactbtn">Contact</li>
             </ul>
         </div>
         <input type="search" class="nav__search" placeholder="Search">
@@ -46,14 +57,20 @@
             <a href="#" class="hero__left-btn2">Order a Meal</a>
         </div>
         <div class="hero__right">
-            <div class="hero__right-play">
-                    <i class="fas fa-play"></i>
+            <div class="hero__right-gallery">
+                <img src="./food_2_pizza.jpg" alt="Pizza Img" class="food pizza">
+                <img src="./food_3_spaghetti.jpg" alt="Pasta Img" class="food pasta">
+                <img src="./food_plate.jpg" alt="Plate Img" class="food plate">
             </div>
-            <div class="hero__right-larr"><i class="fas fa-angle-left"></i></div>
-            <div class="hero__right-rarr"><i class="fas fa-angle-right"></i></div>
+            <div onclick="controlSlide()" id="playbtn" class="hero__right-play">
+                    <!-- <i class="fas fa-play"></i> -->
+                    <i class="fas fa-pause"></i>
+            </div>
+            <div onclick="prevPic()" class="hero__right-larr"><i class="fas fa-angle-left"></i></div>
+            <div onclick="nextPic()" class="hero__right-rarr"><i class="fas fa-angle-right"></i></div>
         </div>
     </section>
-    <section class="intro">
+    <section class="intro" id="about">
         <div class="intro__left">
             <h2 class="intro__left-title">Welcome</h2>
             <p class="intro__left-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ea sed corporis sunt, atque dolores! Deserunt magni voluptates, sit necessitatibus odit quos dolores cum velit voluptatem aperiam tenetur eveniet debitis quasi consectetur, labore error sed enim quam, neque ullam. Natus!</p>
@@ -64,7 +81,7 @@
             <a href="#" class="intro__right-link">Our Story &rarr;</a>
         </div>
     </section>
-    <section class="offers">
+    <section class="offers" id="offers">
         <div class="offers__mainimg">
             <div class="offers__mainimg-menu">
                 <h2 class="offers__mainimg-menu--title">Special Offers</h2>
@@ -90,11 +107,11 @@
             <a href="#" class="customers__left-link">All Reviews <span>&rarr;</span></a>
         </div>
         <div class="customers__right">
-            <div class="customers__right-box">
-                <div class="larr">
+            <div class="customers__right-box" data-current="01/03">
+                <div onclick="prevQuote()" class="larr">
                     <i class="fas fa-angle-left arrow"></i>
                 </div>
-                <div class="rarr">
+                <div onclick="nextQuote()" class="rarr">
                     <i class="fas fa-angle-right arrow"></i>
                 </div>
                 <div class="customers__right-box-top">
@@ -117,7 +134,7 @@
 
     </section>
 
-    <footer class="footer">
+    <footer class="footer" id="contact">
         <div class="wrapper">
             <div class="footer__join">
                 <h1 class="footer__join-title">Join Us</h1>
@@ -169,6 +186,12 @@
     </footer>
 
     <script>
+        let currentPic = 0;
+        let playState = 'play';
+        let currentQuote = 1;
+
+        //window.addEventListener('DOMContentLoaded', playSlide);
+
         window.addEventListener('keyup', function(e) {
             if (e.keyCode === 27) {
             document.querySelector('.dropdown').style.transform = 'translateY(-105%)';
@@ -184,6 +207,211 @@
             document.querySelector('.dropdown').style.transform = 'translateY(-105%)';
             document.querySelector('.backdrop').style.transform = 'translateY(-100%)';
         }
+
+        // function pauseSlide() {
+        //     if (playState === 'paused') {
+        //         clearInterval(play);
+        //     }
+        // }
+        let play = setInterval(nextPic, 3000);
+
+        function stopSlide() {
+            clearInterval(play);
+        }
+
+        function controlSlide() {
+            let button = '';
+            let playing;
+            if (playState === 'play') {
+                playState = 'paused';
+                document.getElementById('playbtn').innerHTML = '';
+                button = '<i class="fas fa-play"></i>';
+                document.getElementById('playbtn').insertAdjacentHTML('afterbegin', button);
+                console.log(playState);
+                clearInterval(play);
+                clearInterval(playing);
+                console.log(play);
+
+                // Stop slide here
+            } else if (playState === 'paused') {
+                playState = 'play';
+                document.getElementById('playbtn').innerHTML = '';
+                button = '<i class="fas fa-pause"></i>';
+                document.getElementById('playbtn').insertAdjacentHTML('afterbegin', button);
+                console.log(playState);
+
+                // Start slide here
+                playing = setInterval(nextPic, 3000);
+                document.querySelector('#playbtn').remove();
+                // Problemet här är att om man pausar, och sen kör play igen, så går det snabbare (OCH det går inte att pausa igen)
+                //stopSlide();
+            }
+
+        }
+
+        function prevPic() {
+            console.log(currentPic);
+            if (currentPic === 0) {
+                // show plate (2)
+                document.querySelector('.plate').style.transform = 'translateX(-200%)';
+                document.querySelector('.pizza').style.transform = 'translateX(-200%)';
+                document.querySelector('.pasta').style.transform = 'translateX(-200%)';
+                currentPic = 2;
+            } else if (currentPic === 1) {
+                document.querySelector('.pasta').style.transform = 'translateX(0)'; //reset it
+                document.querySelector('.plate').style.transform = 'translateX(0)';
+                document.querySelector('.pizza').style.transform = 'translateX(0)';
+                currentPic--; 
+            } else if (currentPic === 2) {
+                document.querySelector('.pasta').style.transform = 'translateX(-100%)'; //reset it
+                document.querySelector('.plate').style.transform = 'translateX(-100%)';
+                document.querySelector('.pizza').style.transform = 'translateX(-100%)';
+                currentPic--; 
+            }
+        }
+        function nextPic() {
+            console.log(currentPic);
+            if (currentPic === 0) {
+                document.querySelector('.pizza').style.transform = 'translateX(-100%)';
+                document.querySelector('.pasta').style.transform = 'translateX(-100%)';
+                document.querySelector('.plate').style.transform = 'translateX(-100%)';
+                currentPic++;
+            } else if (currentPic === 1) {
+                document.querySelector('.pizza').style.transform = 'translateX(-200%)'; //reset it
+                document.querySelector('.pasta').style.transform = 'translateX(-200%)'; //reset it
+                document.querySelector('.plate').style.transform = 'translateX(-200%)';
+                currentPic++; 
+            } else if (currentPic === 2) {
+                document.querySelector('.pizza').style.transform = 'translateX(0)'; // reset
+                document.querySelector('.pasta').style.transform = 'translateX(0)'; // reset
+                document.querySelector('.plate').style.transform = 'translateX(0)'; // reset
+                currentPic = 0;
+            }
+        }
+        
+        function prevQuote() {
+            switch (currentQuote) {
+                case (1): {
+                    break;
+                }
+
+                case (2): {
+                currentQuote--;
+                document.querySelector('.stars').innerHTML = `
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                `;
+                document.querySelector('.date').textContent = '5th of May, 2018';
+                document.querySelector('blockquote').textContent = '"Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut earum possimus nam libero incidunt placeat distinctio natus illum debitis sequi!"';
+                document.querySelector('cite').textContent = 'Mark from Dublin';
+                document.querySelector('.customers__right-box').setAttribute('data-current', '01/03');
+                document.querySelector('.larr .arrow').style.color = "rgba(0, 0, 0, .7)";
+                break;
+                }
+
+                case (3): {
+                currentQuote--;
+                document.querySelector('.stars').innerHTML = `
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                `;
+                document.querySelector('.date').textContent = '12th of August, 2017';
+                document.querySelector('blockquote').textContent = '"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et fugiat dolorum tenetur magni molestiae nesciunt repellendus odit quam perferendis illo?"';
+                document.querySelector('cite').textContent = 'Billy from Boston';
+                document.querySelector('.customers__right-box').setAttribute('data-current', '02/03');
+                document.querySelector('.rarr .arrow').style.color = "#000";
+                break;
+                }
+            }
+        }
+
+        function nextQuote() {
+            switch (currentQuote) {
+                case (1): {
+                // switching from 1 to 2
+                currentQuote++;
+                document.querySelector('.stars').innerHTML = `
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                `;
+                document.querySelector('.date').textContent = '12th of August, 2017';
+                document.querySelector('blockquote').textContent = '"Lorem ipsum dolor sit amet consectetur adipisicing elit. Et fugiat dolorum tenetur magni molestiae nesciunt repellendus odit quam perferendis illo?"';
+                document.querySelector('cite').textContent = 'Billy from Boston';
+                document.querySelector('.customers__right-box').setAttribute('data-current', '02/03');
+                document.querySelector('.larr .arrow').style.color = "#000";
+                break;
+                }
+
+                case (2): {
+                // switching from 2 to 3
+                currentQuote++;
+                document.querySelector('.stars').innerHTML = `
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                <i class="fas fa-star star"></i>
+                `;
+                document.querySelector('.date').textContent = '27th of September, 2017';
+                document.querySelector('blockquote').textContent = '"Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus ratione eius, molestias recusandae suscipit ab."';
+                document.querySelector('cite').textContent = 'Joe from Texas';
+                document.querySelector('.customers__right-box').setAttribute('data-current', '03/03');
+                document.querySelector('.larr .arrow').style.color = "#000";
+                document.querySelector('.rarr .arrow').style.color = "rgba(0, 0, 0, .7)";
+                    break;
+                }
+            }
+
+        }
+
+        function smoothScroll(target, duration) {
+            let targetElem = document.querySelector(target);
+            let targetPosition = targetElem.getBoundingClientRect().top; // top-position of target
+            let startPosition = window.pageYOffset; // the distance from the top of the window
+            let distance = targetPosition - startPosition;
+            let startTime = null;
+
+            function animation(currentTime) {
+                if(startTime === null) startTime = currentTime;
+                let timeElapsed = currentTime - startTime;
+                let run = ease(timeElapsed, startPosition, distance, duration);
+                window.scrollTo(0, run);
+                if(timeElapsed < duration) requestAnimationFrame(animation);
+            }
+
+            function ease (t, b, c, d) {
+                t /= d;
+	            return c*t*t + b;
+            };
+
+            requestAnimationFrame(animation);
+
+        }
+
+        document.querySelector('.homebtn').addEventListener('click', function() {
+            smoothScroll('.hero', 1000);
+            closeMenu();
+        });
+        document.querySelector('.aboutbtn').addEventListener('click', function() {
+            smoothScroll('.intro', 1000);
+            closeMenu();
+        });
+        document.querySelector('.offersbtn').addEventListener('click', function() {
+            smoothScroll('.offers', 1000);
+            closeMenu();
+        });
+        document.querySelector('.contactbtn').addEventListener('click', function() {
+            smoothScroll('.footer', 1000);
+            closeMenu();
+        });
+
+
     </script>
 </body>
 </html>

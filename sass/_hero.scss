@@ -78,14 +78,18 @@
 
     &__right {
         width: 700px;
-        height: 700px;
+        height: 90vh;
         border-radius: 50%;
         transform: translateY(-40px);
-        z-index: -1;
-        background: url(../food_1_paella.jpg);
-        background-size: cover;
-        background-position: center;
+        z-index: 5;
         position: relative;
+        //clip-path: circle(50% at 300px);
+        //clip-path: circle(50px at 120px 500px);
+        //clip-path: circle(55% at 135px 150px); // for small screens maybe
+        clip-path: circle(65%);
+        //overflow: hidden;
+        /*overflow-x: hidden;
+        overflow-y: visible;*/
 
         @media screen and (max-width: 1200px) {
             width: 550px;
@@ -112,6 +116,35 @@
             transform: translate(15px, 65px);
         }
 
+        &-gallery {
+            //background: url(../food_1_paella.jpg);
+            //background-size: cover;
+            //background-position: center;
+            width: 300%;
+            height: 100%;
+            display: flex;
+            z-index: -5;
+            //border-radius: 50%;
+            
+            .food {
+                overflow: hidden;
+                //transform: translateX(40%);
+                width: calc(100% / 3);
+                height: 100%;
+                border-radius: 50%;
+                transition: all 1.5s;
+            }
+
+            .pasta {
+                //transform: translateX(-100%);
+                //transform: translateX(100%);
+            }
+
+            .plate {
+                // transform: translateX(-200%);
+            }
+        }
+
         &-larr, &-rarr {
             position: absolute;
             bottom: -15px;
@@ -133,6 +166,7 @@
             }
         }
         &-rarr {
+            z-index: 50;
             left: 60%;
             transform: translateX(-60%);
             cursor: pointer;

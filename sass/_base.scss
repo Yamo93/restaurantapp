@@ -9,9 +9,16 @@ $orange: #FF9933;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    /*scroll-behavior: smooth;*/
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
     font-family: 'Cabin', sans-serif;
     overflow-x: hidden;
 }
+
+a { text-decoration: none; font: inherit; color: inherit; }
