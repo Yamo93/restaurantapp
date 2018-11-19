@@ -104,6 +104,13 @@
 
             &--item {
                 cursor: pointer;
+                transition: all .3s;
+                border: 2.5px solid transparent;
+            }
+
+            .active {
+                padding-bottom: 3px;
+                border-bottom: 2.5px solid $green;
             }
         }
     }

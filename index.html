@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="top">
 
     <!-- 
         Todos:
@@ -27,10 +27,10 @@
             <p onclick="closeMenu()" class="close">&times;</p>
             <h1>Tasty</h1>
             <ul>
-                <li onclick="closeMenu()"><a href="#">Home</a></li>
-                <li onclick="closeMenu()"><a href="#about">About</a></li>
-                <li onclick="closeMenu()"><a href="#offers">Offers</a></li>
-                <li onclick="closeMenu()"><a href="#contact">Contact</a></li>
+                <li onclick="closeMenu()"><a class="scroll" href="#top">Home</a></li>
+                <li onclick="closeMenu()"><a class="scroll" href="#about">About</a></li>
+                <li onclick="closeMenu()"><a class="scroll" href="#offers">Offers</a></li>
+                <li onclick="closeMenu()"><a class="scroll" href="#contact">Contact</a></li>
             </ul>
         </div>
         <div class="nav__logo">
@@ -39,10 +39,10 @@
         <i onclick="showMenu()" class="fas fa-bars hamburger"></i>
         <div class="nav__menu">
             <ul class="nav__menu-list">
-                <li class="nav__menu-list--item homebtn">Home</li>
-                <li class="nav__menu-list--item aboutbtn">About Us</li>
-                <li class="nav__menu-list--item offersbtn">Offers</li>
-                <li class="nav__menu-list--item contactbtn">Contact</li>
+                <li class="nav__menu-list--item homebtn active"><a class="scroll" href="#top">Home</a></li>
+                <li class="nav__menu-list--item aboutbtn"><a class="scroll" href="#about">About Us</a></li>
+                <li class="nav__menu-list--item offersbtn"><a class="scroll" href="#offers">Offers</a></li>
+                <li class="nav__menu-list--item contactbtn"><a class="scroll" href="#contact">Contact</a></li>
             </ul>
         </div>
         <input type="search" class="nav__search" placeholder="Search">
@@ -185,6 +185,7 @@
         </div>
     </footer>
 
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script>
         let currentPic = 0;
         let playState = 'play';
@@ -290,6 +291,12 @@
         }
         
         function prevQuote() {
+            if (currentQuote !== 1) {
+            document.querySelector('.customers__right-box').classList.add('jumpanimate');
+            setTimeout(function () {
+            document.querySelector('.customers__right-box').classList.remove('jumpanimate');
+            }, 1000);
+            }
             switch (currentQuote) {
                 case (1): {
                     break;
@@ -331,6 +338,12 @@
         }
 
         function nextQuote() {
+            if (currentQuote !== 3) {
+            document.querySelector('.customers__right-box').classList.add('jumpanimate');
+            setTimeout(function () {
+            document.querySelector('.customers__right-box').classList.remove('jumpanimate');
+            }, 1000);
+            }
             switch (currentQuote) {
                 case (1): {
                 // switching from 1 to 2
@@ -370,6 +383,7 @@
 
         }
 
+        /*
         function smoothScroll(target, duration) {
             let targetElem = document.querySelector(target);
             let targetPosition = targetElem.getBoundingClientRect().top; // top-position of target
@@ -409,6 +423,36 @@
         document.querySelector('.contactbtn').addEventListener('click', function() {
             smoothScroll('.footer', 1000);
             closeMenu();
+        });
+        */
+
+        $(document).ready(function() {
+            var scrollLink = $('.scroll');
+
+            // Smooth scrolling
+            scrollLink.click(function(e) {
+            e.preventDefault();
+            console.log('scroll link pressed');
+            $('body,html').animate({
+            scrollTop: $(this.hash).offset().top
+            }, 2000 );
+            });
+
+            // Active link switching
+            $(window).scroll(function() {
+                var scrollbarLocation = $(this).scrollTop();
+
+                scrollLink.each(function() {
+
+                    var sectionOffset = $(this.hash).offset().top - 20;
+
+                    if ( sectionOffset <= scrollbarLocation ) { // if the spot of section is equal to the position of scroll
+                        $(this).parent().addClass('active');
+                        $(this).parent().siblings().removeClass('active');
+
+                    }
+                })
+            })
         });
 
 

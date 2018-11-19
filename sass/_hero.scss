@@ -1,13 +1,23 @@
 .hero {
     width: 100%;
     height: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: space-between;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
     margin-top: 90px;
 
     @media screen and (max-width: 800px) {
-        flex-direction: column-reverse;
-        align-items: center;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: reverse;
+            -ms-flex-direction: column-reverse;
+                flex-direction: column-reverse;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 
     &__left {
@@ -80,14 +90,14 @@
         width: 700px;
         height: 90vh;
         border-radius: 50%;
-        transform: translateY(-40px);
+        -webkit-transform: translateY(-40px);
+                transform: translateY(-40px);
         z-index: 5;
-        position: relative;
         //clip-path: circle(50% at 300px);
         //clip-path: circle(50px at 120px 500px);
         //clip-path: circle(55% at 135px 150px); // for small screens maybe
-        clip-path: circle(65%);
-        //overflow: hidden;
+        // -webkit-clip-path: circle(65%);
+        //         clip-path: circle(65%);
         /*overflow-x: hidden;
         overflow-y: visible;*/
 
@@ -99,12 +109,14 @@
         @media screen and (max-width: 1000px) {
             width: 400px;
             height: 300px;
-            transform: translateY(120px);
+            -webkit-transform: translateY(120px);
+                    transform: translateY(120px);
         }
         
         @media screen and (max-width: 800px) and (min-height: 1000px) {
             width: 90%;
-            transform: translate(0px, 65px);
+            -webkit-transform: translate(0px, 65px);
+                    transform: translate(0px, 65px);
             height: 450px;
         }
 
@@ -113,18 +125,27 @@
         }
 
         @media screen and (max-width: 450px) {
-            transform: translate(15px, 65px);
+            -webkit-transform: translate(15px, 65px);
+                    transform: translate(15px, 65px);
         }
 
         &-gallery {
+            //overflow: hidden;
             //background: url(../food_1_paella.jpg);
             //background-size: cover;
             //background-position: center;
             width: 300%;
             height: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
             z-index: -5;
+            overflow: hidden;
             //border-radius: 50%;
+
+            @media screen and (max-width: 800px) {
+                overflow-x: hidden;
+            }
             
             .food {
                 overflow: hidden;
@@ -132,6 +153,7 @@
                 width: calc(100% / 3);
                 height: 100%;
                 border-radius: 50%;
+                -webkit-transition: all 1.5s;
                 transition: all 1.5s;
             }
 
@@ -149,13 +171,20 @@
             position: absolute;
             bottom: -15px;
             left: 45%;
-            transform: translateX(-45%);
+            -webkit-transform: translateX(-45%);
+                    transform: translateX(-45%);
             padding: 15px;
             width: 45px;
             height: 45px;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             border-radius: 50%;
             background-color: $orange;
             border: 3px solid #FFF;
@@ -168,20 +197,28 @@
         &-rarr {
             z-index: 50;
             left: 60%;
-            transform: translateX(-60%);
+            -webkit-transform: translateX(-60%);
+                    transform: translateX(-60%);
             cursor: pointer;
         }
 
         &-play {
             position: absolute;
+            display: -webkit-box;
+            display: -ms-flexbox;
             display: flex;
-            justify-content: center;
-            align-items: center;
+            -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                    justify-content: center;
+            -webkit-box-align: center;
+                -ms-flex-align: center;
+                    align-items: center;
             color: #FEFEFE;
             font-size: 30px;
             left: -40px;
             bottom: 30%;
-            transform: translateY(-30%);
+            -webkit-transform: translateY(-30%);
+                    transform: translateY(-30%);
             width: 80px;
             height: 80px;
             border-radius: 50%;

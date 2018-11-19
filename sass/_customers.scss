@@ -75,6 +75,7 @@
             padding: 35px;
             background-color: #FEFEFE;
             min-width: 330px;
+            //perspective: 800px;
 
             @media screen and (max-width: 430px) {
                 min-width: 270px;
@@ -170,4 +171,32 @@
 
         }
     }
+}
+
+@keyframes orientate {
+    0% {
+        transform: rotateY(0deg) translateX(0);
+    }
+
+    50%, 70% {
+        transform: translateX(-50%) rotateY(-90deg);
+    }
+    
+    to {
+        transform: translateX(-50%) rotateY(-90deg);
+    }
+}
+
+@keyframes jump {
+    from {
+        transform: scale(1);
+    }
+    
+    to {
+        transform: scale(1.15);
+    }
+}
+
+.jumpanimate {
+    animation: jump .4s ease-in-out 0s 2 alternate;
 }

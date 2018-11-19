@@ -6,9 +6,6 @@
   box-sizing: border-box;
   /*scroll-behavior: smooth;*/ }
 
-html {
-  scroll-behavior: smooth; }
-
 body {
   font-family: 'Cabin', sans-serif;
   overflow-x: hidden; }
@@ -98,7 +95,12 @@ a {
       list-style: none;
       width: 100%; }
       .nav__menu-list--item {
-        cursor: pointer; }
+        cursor: pointer;
+        transition: all .3s;
+        border: 2.5px solid transparent; }
+      .nav__menu-list .active {
+        padding-bottom: 3px;
+        border-bottom: 2.5px solid #6abe83; }
   .nav__search {
     width: 140px;
     border: none;
@@ -117,12 +119,22 @@ a {
 .hero {
   width: 100%;
   height: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
   justify-content: space-between;
   margin-top: 90px; }
   @media screen and (max-width: 800px) {
     .hero {
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: reverse;
+      -ms-flex-direction: column-reverse;
       flex-direction: column-reverse;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center; } }
   .hero__left {
     width: 45%;
@@ -175,10 +187,9 @@ a {
     width: 700px;
     height: 90vh;
     border-radius: 50%;
+    -webkit-transform: translateY(-40px);
     transform: translateY(-40px);
     z-index: 5;
-    position: relative;
-    clip-path: circle(65%);
     /*overflow-x: hidden;
         overflow-y: visible;*/ }
     @media screen and (max-width: 1200px) {
@@ -189,10 +200,12 @@ a {
       .hero__right {
         width: 400px;
         height: 300px;
+        -webkit-transform: translateY(120px);
         transform: translateY(120px); } }
     @media screen and (max-width: 800px) and (min-height: 1000px) {
       .hero__right {
         width: 90%;
+        -webkit-transform: translate(0px, 65px);
         transform: translate(0px, 65px);
         height: 450px; } }
     @media screen and (max-width: 700px) {
@@ -200,28 +213,43 @@ a {
         width: 300px; } }
     @media screen and (max-width: 450px) {
       .hero__right {
+        -webkit-transform: translate(15px, 65px);
         transform: translate(15px, 65px); } }
     .hero__right-gallery {
       width: 300%;
       height: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
-      z-index: -5; }
+      z-index: -5;
+      overflow: hidden; }
+      @media screen and (max-width: 800px) {
+        .hero__right-gallery {
+          overflow-x: hidden; } }
       .hero__right-gallery .food {
         overflow: hidden;
         width: calc(100% / 3);
         height: 100%;
         border-radius: 50%;
+        -webkit-transition: all 1.5s;
         transition: all 1.5s; }
     .hero__right-larr, .hero__right-rarr {
       position: absolute;
       bottom: -15px;
       left: 45%;
+      -webkit-transform: translateX(-45%);
       transform: translateX(-45%);
       padding: 15px;
       width: 45px;
       height: 45px;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       border-radius: 50%;
       background-color: #FF9933;
@@ -232,17 +260,25 @@ a {
     .hero__right-rarr {
       z-index: 50;
       left: 60%;
+      -webkit-transform: translateX(-60%);
       transform: translateX(-60%);
       cursor: pointer; }
     .hero__right-play {
       position: absolute;
+      display: -webkit-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
       justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
       align-items: center;
       color: #FEFEFE;
       font-size: 30px;
       left: -40px;
       bottom: 30%;
+      -webkit-transform: translateY(-30%);
       transform: translateY(-30%);
       width: 80px;
       height: 80px;
@@ -497,10 +533,27 @@ a {
         font-size: 13px;
         color: rgba(0, 0, 0, 0.4); }
 
+@keyframes orientate {
+  0% {
+    transform: rotateY(0deg) translateX(0); }
+  50%, 70% {
+    transform: translateX(-50%) rotateY(-90deg); }
+  to {
+    transform: translateX(-50%) rotateY(-90deg); } }
+
+@keyframes jump {
+  from {
+    transform: scale(1); }
+  to {
+    transform: scale(1.15); } }
+
+.jumpanimate {
+  animation: jump .4s ease-in-out 0s 2 alternate; }
+
 .imgsec {
   width: 100%;
   height: 540px;
-  background: url(/shawarma_medium.jpeg);
+  background: url(../bottom_shawarma.jpeg);
   background-size: cover;
   background-position: left; }
 
